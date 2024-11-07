@@ -3,76 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Parallax Background</title>
+    <title>Cursor-Responsive Gradient</title>
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
             overflow: hidden;
             height: 100%;
-            width: 100%;
-            background: black;
+            position: relative;
         }
+
         canvas {
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Ensures canvas stays behind the text */
+        }
+
+        p {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            z-index: 1; /* Text stays above the canvas */
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-    <h1> i love you cutie - arthur</h1>
+    <header>
+        <div class="wrapHead">
+            <div class="name-container">
+                <div class="name"></div>
+            </div>
+            <nav class="nav-bar">
+                <a href="#learning-outcomes">Learning Outcomes</a>
+                <a href="#about">About Me</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <p>Coralie Erasmus - S3</p>
+
+    <!-- Include Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        let scene, camera, renderer, geometry, material, mesh;
+        // Set up scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
 
-        // Initialize the scene
-        function init() {
-            // Scene setup
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-            // Geometry and material for the background
-            geometry = new THREE.PlaneGeometry(10, 10, 1, 1);
-            material = new THREE.MeshBasicMaterial({ color: 0x3498db, wireframe: true });
-            mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
+        // Create a plane geometry with a custom shader material
+        const geometry = new THREE.PlaneGeometry(2, 2);
+        const material = new THREE.ShaderMaterial({
+            uniforms: {
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                u_time: { value: 0.0 },
+                u_mouse: { value: new THREE.Vector2(0.5, 0.5) }, // Mouse position
+                u_bgColor: { value: new THREE.Color(0xFFFFFF) } // Set background color to white for brightness
+            },
+            vertexShader: `
+                void main() {
+                    gl_Position = vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform vec2 u_resolution;
+                uniform float u_time;
+                uniform vec2 u_mouse;
+                uniform vec3 u_bgColor;
 
-            camera.position.z = 5;
+                // Noise function
+                float random(vec2 p) {
+                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+                }
 
-            // Mouse move event listener
-            document.addEventListener('mousemove', onMouseMove);
+                float noise(vec2 p) {
+                    vec2 i = floor(p);
+                    vec2 f = fract(p);
+                    vec2 u = f * f * (3.0 - 2.0 * f);
+                    return mix(mix(random(i), random(i + vec2(1.0, 0.0)), u.x),
+                               mix(random(i + vec2(0.0, 1.0)), random(i + vec2(1.0, 1.0)), u.x), u.y);
+                }
 
-            animate();
-        }
+                void main() {
+                    vec2 st = gl_FragCoord.xy / u_resolution.xy;
+                    st.x *= u_resolution.x / u_resolution.y;
 
-        // Parallax effect on mouse move
-        function onMouseMove(event) {
-            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                    // Add cursor influence to noise
+                    vec2 mouseOffset = u_mouse - st;
+                    float mouseEffect = length(mouseOffset) * 2.0; // Amplify the effect
 
-            // Slightly adjust the camera position based on mouse movement
-            camera.position.x = mouseX * 0.5;
-            camera.position.y = mouseY * 0.5;
-        }
+                    // Create evolving noise with mouse influence
+                    float n = noise(st * 3.0 + u_time * 0.3 + mouseOffset * mouseEffect);
+                    float n2 = noise(st * 3.0 - u_time * 0.3 - mouseOffset * mouseEffect);
 
-        // Animate the scene
-        function animate() {
-            requestAnimationFrame(animate);
+                    // Generate colors based on the background color passed as a uniform
+                    vec3 color = mix(u_bgColor, vec3(0.5 + 0.5 * cos(6.2831 * n + u_time * 0.5),
+                                                     0.5 + 0.5 * sin(6.2831 * n2 + u_time * 0.6),
+                                                     0.7 + 0.3 * cos(6.2831 * (n + n2) + u_time * 0.7)), 0.5);
 
-            // Render the scene
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `
+        });
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        // Set up animation loop
+        camera.position.z = 1;
+        const animate = () => {
+            material.uniforms.u_time.value += 0.02; // Increment time
             renderer.render(scene, camera);
-        }
+            requestAnimationFrame(animate);
+        };
+        animate();
 
-        // Resize canvas on window resize
+        // Update resolution on resize
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+            material.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
         });
 
-        init();
+        // Update mouse position
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = 1.0 - e.clientY / window.innerHeight; // Flip Y-axis for WebGL
+            material.uniforms.u_mouse.value.set(mouseX, mouseY);
+        });
+
+        // Change background color based on scroll
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight;
+            const windowHeight = window.innerHeight;
+            const scrollProgress = scrollTop / (docHeight - windowHeight);
+
+            // Calculate color based on scroll position (interpolate between colors)
+            const startColor = new THREE.Color(0xFF5733); // Start color (orange)
+            const endColor = new THREE.Color(0xFFFFFF); // End color (white)
+            const currentColor = startColor.lerp(endColor, scrollProgress);
+
+            // Update the shader's background color uniform
+            material.uniforms.u_bgColor.value = currentColor;
+
+            // Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+        });
     </script>
 </body>
 </html>
