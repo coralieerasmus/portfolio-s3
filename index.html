@@ -3,69 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursor-Responsive Gradient</title>
+    <title>Interactive Organic Gradient</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            height: 100%;
-            position: relative;
         }
 
         canvas {
             display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1; /* Ensures canvas stays behind the text */
-        }
-
-        p {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 2rem;
-            z-index: 1; /* Text stays above the canvas */
-            font-family: Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="wrapHead">
-            <div class="name-container">
-                <div class="name"></div>
-            </div>
-            <nav class="nav-bar">
-                <a href="#learning-outcomes">Learning Outcomes</a>
-                <a href="#about">About Me</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
-    <p>Coralie Erasmus - S3</p>
-
-    <!-- Include Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Set up scene, camera, and renderer
+        // Initialize scene, camera, and renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
-
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        // Create a plane geometry with a custom shader material
+        // Create a fullscreen plane
         const geometry = new THREE.PlaneGeometry(2, 2);
+
+        // Shader material
         const material = new THREE.ShaderMaterial({
             uniforms: {
-                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
                 u_time: { value: 0.0 },
-                u_mouse: { value: new THREE.Vector2(0.5, 0.5) }, // Mouse position
-                u_bgColor: { value: new THREE.Color(0xFFFFFF) } // Set background color to white for brightness
+                u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
             },
             vertexShader: `
                 void main() {
@@ -73,12 +41,11 @@
                 }
             `,
             fragmentShader: `
-                uniform vec2 u_resolution;
                 uniform float u_time;
                 uniform vec2 u_mouse;
-                uniform vec3 u_bgColor;
+                uniform vec2 u_resolution;
 
-                // Noise function
+                // Simplex noise function
                 float random(vec2 p) {
                     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
                 }
@@ -87,82 +54,70 @@
                     vec2 i = floor(p);
                     vec2 f = fract(p);
                     vec2 u = f * f * (3.0 - 2.0 * f);
-                    return mix(mix(random(i), random(i + vec2(1.0, 0.0)), u.x),
-                               mix(random(i + vec2(0.0, 1.0)), random(i + vec2(1.0, 1.0)), u.x), u.y);
+
+                    return mix(
+                        mix(random(i), random(i + vec2(1.0, 0.0)), u.x),
+                        mix(random(i + vec2(0.0, 1.0)), random(i + vec2(1.0, 1.0)), u.x),
+                        u.y
+                    );
                 }
 
                 void main() {
                     vec2 st = gl_FragCoord.xy / u_resolution.xy;
-                    st.x *= u_resolution.x / u_resolution.y;
 
-                    // Add cursor influence to noise
-                    vec2 mouseOffset = u_mouse - st;
-                    float mouseEffect = length(mouseOffset) * 2.0; // Amplify the effect
+                    // Normalize mouse influence
+                    vec2 mouseNorm = u_mouse / u_resolution;
+                    vec2 p = st * 2.0 - 1.0;
 
-                    // Create evolving noise with mouse influence
-                    float n = noise(st * 3.0 + u_time * 0.3 + mouseOffset * mouseEffect);
-                    float n2 = noise(st * 3.0 - u_time * 0.3 - mouseOffset * mouseEffect);
+                    // Apply time-based noise distortion for fluid movement
+                    float n = noise(p * 3.0 + u_time * 1.0); // Adjusted dynamic movement speed
+                    float m = noise(p * 2.0 - u_time * 0.8 + mouseNorm * 2.0); // Mouse influence with movement
 
-                    // Generate colors based on the background color passed as a uniform
-                    vec3 color = mix(u_bgColor, vec3(0.5 + 0.5 * cos(6.2831 * n + u_time * 0.5),
-                                                     0.5 + 0.5 * sin(6.2831 * n2 + u_time * 0.6),
-                                                     0.7 + 0.3 * cos(6.2831 * (n + n2) + u_time * 0.7)), 0.5);
+                    // Sunset-inspired color blending with clearer distinctions
+                    vec3 color1 = vec3(1.0, 0.4, 0.1); // Vibrant orange (sunset base)
+                    vec3 color2 = vec3(1.0, 0.8, 0.2); // Soft yellow (highlight)
+                    vec3 color3 = vec3(0.6, 0.1, 0.6); // Deep purple (twilight)
+                    vec3 color4 = vec3(0.1, 0.3, 0.8); // Cool blue (fading daylight)
+                    
+                    // Maintain clear transitions and subtle movement
+                    vec3 color = mix(color1, color2, smoothstep(0.0, 1.0, n));  // Orange to Yellow
+                    color = mix(color, color3, smoothstep(0.0, 1.0, m)); // Yellow to Purple
+                    color = mix(color, color4, smoothstep(0.0, 1.0, abs(n - m))); // Purple to Blue
+
+                    // Allow colors to move fluidly without overpowering one another
+                    vec2 fluidMovement = vec2(sin(u_time * 0.5), cos(u_time * 0.5)); // Directional fluid motion
+                    color += 0.2 * sin(u_time + fluidMovement.x + fluidMovement.y); // Subtle fluid effect
 
                     gl_FragColor = vec4(color, 1.0);
                 }
             `
         });
+
         const plane = new THREE.Mesh(geometry, material);
         scene.add(plane);
 
-        // Set up animation loop
+        // Set up camera position
         camera.position.z = 1;
-        const animate = () => {
-            material.uniforms.u_time.value += 0.02; // Increment time
-            renderer.render(scene, camera);
-            requestAnimationFrame(animate);
-        };
-        animate();
 
-        // Update resolution on resize
+        // Track mouse movement
+        window.addEventListener('mousemove', (event) => {
+            material.uniforms.u_mouse.value.set(event.clientX, event.clientY);
+        });
+
+        // Handle resize
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             material.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
         });
 
-        // Update mouse position
-        window.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = 1.0 - e.clientY / window.innerHeight; // Flip Y-axis for WebGL
-            material.uniforms.u_mouse.value.set(mouseX, mouseY);
-        });
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+            material.uniforms.u_time.value += 0.01; // Controlled time increment for fluid movement
+            renderer.render(scene, camera);
+        };
 
-        // Change background color based on scroll
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight;
-            const windowHeight = window.innerHeight;
-            const scrollProgress = scrollTop / (docHeight - windowHeight);
-
-            // Calculate color based on scroll position (interpolate between colors)
-            const startColor = new THREE.Color(0xFF5733); // Start color (orange)
-            const endColor = new THREE.Color(0xFFFFFF); // End color (white)
-            const currentColor = startColor.lerp(endColor, scrollProgress);
-
-            // Update the shader's background color uniform
-            material.uniforms.u_bgColor.value = currentColor;
-
-            // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-        });
+        animate();
     </script>
 </body>
 </html>
