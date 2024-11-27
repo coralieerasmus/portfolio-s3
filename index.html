@@ -1,24 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Organic Gradient</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <title>Interactive Organic Gradient</title>
+    </head>
+    <body>
+        <main>
+            <h1 class = "landing-heading">
+                <span class = "landing-heading-line"> Coralie Erasmus</span>
+                <span class = "landing-heading-line"> Portfolio - S3</span>
+            </h1>
+        </main>
+        <style>
+            body {
+        margin: 0;
+        overflow: hidden;
+    }
 
-        canvas {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Initialize scene, camera, and renderer
+    canvas {
+        display: block;
+    }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="index.js" defer></script>
+        <script>
+                // Initialize scene, camera, and renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
@@ -113,11 +121,11 @@
         // Animation loop
         const animate = function () {
             requestAnimationFrame(animate);
-            material.uniforms.u_time.value += 0.01; // Controlled time increment for fluid movement
+            material.uniforms.u_time.value += 0.01; // Controlled time increment for liquid movement
             renderer.render(scene, camera);
         };
 
         animate();
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
