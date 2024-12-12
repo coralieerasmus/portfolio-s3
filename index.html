@@ -3,145 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Interactive Organic Gradient</title>
-    <link rel="preload" href="/Aboreto-Regular.ttf" as="font" type="font/otf" crossorigin="anonymous">
+    <title>Portfolio</title>
     <style>
-        /* Ensure the body and canvas occupy full size */
+        @font-face {
+            font-family: "Aboreto";
+            src: url("/Aboreto-Regular.ttf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* General Body Styles */
         body {
             margin: 0;
-            overflow: hidden;
-            position: relative; /* Set position to allow z-index stacking */
-            height: 100vh; /* Full view height */
-            width: 100vw; /* Full view width */
-        }
-
-        canvas {
-            display: block;
-            position: absolute; /* Position the canvas as the background */
-            top: 0;
-            left: 0;
-            z-index: 0; /* Ensure it remains below other content */
-        }
-
-        /* Style for the h1 */
-        .landing-heading {
-            position: absolute; /* Allow placement over the canvas */
-            z-index: 1; /* Stack above the canvas */
-            color: white;
-            text-align: center;
-            width: 100%;
-            top: 40%; /* Center vertically */
-            transform: translateY(-50%); /* Center alignment adjustment */
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100vh; /* Ensure full height */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            box-sizing: border-box;
+            cursor: none; /* Hide default cursor */
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            display: flex;
+            gap: 20px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 2px solid white;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.8);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Main Heading Styles */
+        .landing-heading {
+            color: #333;
+            text-align: center;
+            font-family: Aboreto, sans-serif;
+            font-size: 6vw;
+            margin-top: 100px; /* Adjust space for the navbar */
+        }
+
+        /* Section Styles */
+        section {
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            align-items: flex-start; /* Align items to the top */
+            text-align: left; /* Align text to the left */
+            font-size: 1.5rem;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Work Section Styles */
+        #work {
+            background-color: #f0f0f0;
+            padding: 50px 20px; /* Adjust padding to prevent content cut-off */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Left align the work section content */
+        }
+
+        #work h2 {
+            margin-bottom: 40px;
             font-size: 2.5rem;
         }
 
-        .landing-heading-line {
-            display: block; /* Ensure each line appears below the other */
+        /* Work Item Styles (Clickable Projects) */
+        .work-item {
+            background-color: white;
+            padding: 20px;
+            padding-right: 30vw;
+            padding-left: 25vw;
+            width: 100%; /* Use full width */
+            height: 50vw;
+            box-sizing: border-box;
+            margin-bottom: 0; /* Remove spacing between projects */
+            text-align: left; /* Align text inside work item to the left */
+            display: flex;  /* Arrange content side by side */
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer; /* Make the section clickable */
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Keep text color consistent */
+            /* Remove box-shadow */
+            box-shadow: none; /* No shadow */
         }
+
+        .work-item img {
+            max-width: 200px; /* Control the image size */
+            height: auto;
+        }
+
+        .work-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .work-item p {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section Styles */
+        #contact {
+            background-color: #e0e0e0;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* See More Circle Style */
+        .see-more-circle {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            text-align: center;
+            pointer-events: none; /* Prevent circle from interfering with clicks */
+            transform: translate(-50%, -50%); /* Make it centered on the cursor */
+        }
+
     </style>
 </head>
 <body>
-    <main>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Main Heading -->
+    <main id="home">
         <h1 class="landing-heading">
-            <span class="landing-heading-line">Coralie Erasmus</span>
-            <span class="landing-heading-line">Portfolio - S3</span>
+            Coralie Erasmus<br>
+            Portfolio - S3
         </h1>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="index.js" defer></script>
+
+    <!-- Work Section with 3 Projects -->
+    <section id="work">
+        <h2>Recent Projects</h2>
+        
+        <!-- Project 1 (Clickable) -->
+        <a href="https://www.project1.com" class="work-item">
+            <div>
+                <h3>Project 1</h3>
+                <p>A brief description of the first project <br> showcasing design and functionality.</p>
+            </div>
+            <img src="https://via.placeholder.com/200" alt="Project 1">
+        </a>
+        
+        <!-- Project 2 (Clickable) -->
+        <a href="https://www.project2.com" class="work-item">
+            <div>
+                <h3>Project 2</h3>
+                <p>A brief description of the second project<br> emphasizing innovation and creativity.</p>
+            </div>
+            <img src="https://via.placeholder.com/200" alt="Project 2">
+        </a>
+        
+        <!-- Project 3 (Clickable) -->
+        <a href="https://www.project3.com" class="work-item">
+            <div>
+                <h3>Project 3</h3>
+                <p>A brief description of the third project<br> highlighting the impact it had on users.</p>
+            </div>
+            <img src="https://via.placeholder.com/200" alt="Project 3">
+        </a>
+
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Need to get a hold of me?</p>
+    </section>
+
+    <!-- See More Circle -->
+    <div class="see-more-circle" id="seeMoreCircle">
+        See More
+    </div>
+
     <script>
-        // Initialize scene, camera, and renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+        const images = document.querySelectorAll('.work-item img');
+        const seeMoreCircle = document.getElementById('seeMoreCircle');
 
-        // Create a fullscreen plane
-        const geometry = new THREE.PlaneGeometry(2, 2);
+        images.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                seeMoreCircle.style.display = 'flex'; // Show the circle
+            });
 
-        // Shader material
-        const material = new THREE.ShaderMaterial({
-            uniforms: {
-                u_time: { value: 0.0 },
-                u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
-                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
-            },
-            vertexShader: `
-                void main() {
-                    gl_Position = vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform float u_time;
-                uniform vec2 u_mouse;
-                uniform vec2 u_resolution;
-
-                float random(vec2 p) {
-                    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-                }
-
-                float noise(vec2 p) {
-                    vec2 i = floor(p);
-                    vec2 f = fract(p);
-                    vec2 u = f * f * (3.0 - 2.0 * f);
-
-                    return mix(
-                        mix(random(i), random(i + vec2(1.0, 0.0)), u.x),
-                        mix(random(i + vec2(0.0, 1.0)), random(i + vec2(1.0, 1.0)), u.x),
-                        u.y
-                    );
-                }
-
-                void main() {
-                    vec2 st = gl_FragCoord.xy / u_resolution.xy;
-
-                    vec2 mouseNorm = u_mouse / u_resolution;
-                    vec2 p = st * 2.0 - 1.0;
-
-                    float n = noise(p * 3.0 + u_time * 1.0);
-                    float m = noise(p * 2.0 - u_time * 0.8 + mouseNorm * 2.0);
-
-                    vec3 color1 = vec3(1.0, 0.4, 0.1);
-                    vec3 color2 = vec3(1.0, 0.8, 0.2);
-                    vec3 color3 = vec3(0.6, 0.1, 0.6);
-                    vec3 color4 = vec3(0.1, 0.3, 0.8);
-                    
-                    vec3 color = mix(color1, color2, smoothstep(0.0, 1.0, n));
-                    color = mix(color, color3, smoothstep(0.0, 1.0, m));
-                    color = mix(color, color4, smoothstep(0.0, 1.0, abs(n - m)));
-
-                    vec2 fluidMovement = vec2(sin(u_time * 0.5), cos(u_time * 0.5));
-                    color += 0.2 * sin(u_time + fluidMovement.x + fluidMovement.y);
-
-                    gl_FragColor = vec4(color, 1.0);
-                }
-            `
+            image.addEventListener('mouseleave', () => {
+                seeMoreCircle.style.display = 'none'; // Hide the circle
+            });
         });
 
-        const plane = new THREE.Mesh(geometry, material);
-        scene.add(plane);
-
-        camera.position.z = 1;
-
-        window.addEventListener('mousemove', (event) => {
-            material.uniforms.u_mouse.value.set(event.clientX, event.clientY);
+        // Move the see-more circle with the mouse
+        document.addEventListener('mousemove', (e) => {
+            if (seeMoreCircle.style.display === 'flex') {
+                seeMoreCircle.style.top = `${e.clientY}px`;  // Align the circle directly with the cursor
+                seeMoreCircle.style.left = `${e.clientX}px`; // Center it on the cursor
+            }
         });
-
-        window.addEventListener('resize', () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            material.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
-        });
-
-        const animate = function () {
-            requestAnimationFrame(animate);
-            material.uniforms.u_time.value += 0.01;
-            renderer.render(scene, camera);
-        };
-
-        animate();
     </script>
+
 </body>
 </html>
