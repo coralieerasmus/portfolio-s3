@@ -7,7 +7,15 @@
     <style>
         @font-face {
             font-family: "Aboreto";
-            src: url("/Aboreto-Regular.ttf") format("opentype");
+            src: url("/fonts/Aboreto-Regular.ttf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Zen Old Mincho";
+            src: url("/fonts/ZenOldMincho-Regular.ttf") format("opentype");
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -28,28 +36,62 @@
 
         /* Navigation Bar Styles */
         .navbar {
-            display: flex;
-            gap: 20px;
+            gap: 2vw;
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 2vw;
+            right: 2vw;
             z-index: 10;
+            width: auto;
+            height: auto;
         }
 
         .navbar a {
             text-decoration: none;
             color: white;
             font-weight: bold;
-            padding: 8px 15px;
+            font-size: 1.2vw;
+            padding: 0.5vw 2vw;
             border: 2px solid white;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 1vw;
+            background-color:#050505;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .navbar a:hover {
             background-color: white;
-            color: black;
+            color: #050505;
+            border: 2px solid #050505;
+        }
+
+         /* Dropdown Styles */
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 15vw;
+            z-index: 1;
+            margin-top: 0.5vw;
+            background-color: transparent;
+        }
+
+        .dropdown-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dropdown-content a:hover {
+            background-color: white;
+            color: #050505;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         /* Main Heading Styles */
@@ -75,7 +117,7 @@
 
         /* Work Section Styles */
         #work {
-            background-color: #070707;
+            background-color: #050505;
             padding: 50px 20px; /* Adjust padding to prevent content cut-off */
             width: 100%;
             display: flex;
@@ -85,20 +127,19 @@
         }
 
         #work h2 {
-            margin-bottom: 40px;
             margin-left: 3.7vw;
-            font-size: 2vw;
+            font-size: 3vw;
             color: #e0e0e0;
             
         }
 
         /* Work Item Styles (Clickable Projects) */
         .work-item {
-            background-color: rgb(0, 0, 0);
+            background-color: #050505;
             padding: 20px;
-            padding-right: 45vw;
+            padding-right: 20vw;
             padding-left: 2vw;
-            width: 100%; /* Use full width */
+            width: auto; /* Use full width */
             height: 55vw;
             box-sizing: border-box;
             margin-bottom: 0; /* Remove spacing between projects */
@@ -143,22 +184,61 @@
 
         /* Contact Section Styles */
         #contact {
-            background-color: #e0e0e0;
+            background-color: #050505;
             height: 100vh;
-            text-align: center;
         }
 
+        .contact-elements{
+            text-align: left;
+            display: flex;
+            margin-left: 4vw;
+        }
+
+        .contact-elements h2 {
+            margin-top: 7vw;
+            font-size: 2.5vw;
+            color: #e0e0e0;
+            font-family: Zen Old Mincho;
+        }
+
+        .contact-elements p {
+            font-size: 1.4vw;
+            color: #e0e0e0;
+        }
+
+        .contact-elements img{
+            margin-left: 8vw;
+            margin-top: 4vw;
+            filter: saturate(7);
+            width: 20vw;
+            height: auto;
+        }
+
+        .contact-elements a{
+            color: #e0e0e0;
+            font-size: 1.4vw;
+        }
 
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="#home">Home</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-    </nav>
+   <!-- Navigation Bar -->
+   <nav class="navbar">
+    <a href="#home">Home</a>
+    <div class="dropdown">
+        <a href="#work">Projects</a>
+        <div class="dropdown-content">
+            <a href="#project1">Passion Project</a>
+            <a href="#project2">Go-IT</a>
+            <a href="#project3">Ynot?</a>
+            <a href="#project4">Portfolio</a>
+            <a href="#project5">Steel Pulse Poster</a>
+            <a href="#project6">Fast Forward</a>
+        </div>
+    </div>
+    <a href="#contact">Contact</a>
+</nav>
 
     <!-- Main Heading -->
     <main id="home">
@@ -254,8 +334,17 @@
     
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Need to get a hold of me?</p>
+        <div class="contact-elements">
+            <div>
+                <h2>Need to get a hold of me?</h2>
+                <p>Let's collaborate or simply have a chat.</p>
+                <a href= "mailto:coralierasmus@gmail.com"> coralierasmus@gmail.com</a>
+            </div>
+            <div class="contact-image">
+                <img src="images/contact-face-img.png" alt="sideprofile image">
+                <img src="images/back-to-top.png" alt="sideprofile image">
+            </div>
+        </div>
     </section>
 
 
