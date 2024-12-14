@@ -21,6 +21,10 @@
             font-display: swap;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* General Body Styles */
         body {
             margin: 0;
@@ -199,6 +203,7 @@
             font-size: 2.5vw;
             color: #e0e0e0;
             font-family: Zen Old Mincho;
+            width: 30vw;
         }
 
         .contact-elements p {
@@ -206,17 +211,26 @@
             color: #e0e0e0;
         }
 
-        .contact-elements img{
-            margin-left: 8vw;
-            margin-top: 4vw;
-            filter: saturate(7);
-            width: 20vw;
-            height: auto;
-        }
-
         .contact-elements a{
             color: #e0e0e0;
             font-size: 1.4vw;
+            
+        }
+
+        .contact-image1 img{
+            margin-left: 4vw;
+            margin-top: 5vw;
+            filter: saturate(7);
+            width: 25vw;
+            height: auto;
+        }
+
+        .contact-image2 img{
+            width: 6vw;
+            height: auto;
+            margin-top: 21vw;
+            margin-left: 23vw;
+            padding: 2vw;
         }
 
     </style>
@@ -340,10 +354,12 @@
                 <p>Let's collaborate or simply have a chat.</p>
                 <a href= "mailto:coralierasmus@gmail.com"> coralierasmus@gmail.com</a>
             </div>
-            <div class="contact-image">
-                <img src="images/contact-face-img.png" alt="sideprofile image">
-                <img src="images/back-to-top.png" alt="sideprofile image">
+            <div class="contact-image1">
+                <img src="images/home/contact-face-img.png" alt="sideprofile image">
             </div>
+            <a href=#home class="contact-image2">
+                <img src="images/home/back-to-top.png" alt="buttom to go back to the top of the page">
+            </a>
         </div>
     </section>
 
