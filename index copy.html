@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        @font-face {
+            font-family: "Aboreto";
+            src: url("/fonts/Aboreto-Regular.ttf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Zen Old Mincho";
+            src: url("/fonts/ZenOldMincho-Regular.ttf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100vh; /* Ensure full height */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            box-sizing: border-box;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            gap: 2vw;
+            position: fixed;
+            top: 2vw;
+            right: 2vw;
+            z-index: 10;
+            width: auto;
+            height: auto;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2vw;
+            padding: 0.5vw 2vw;
+            border: 2px solid white;
+            border-radius: 1vw;
+            background-color:#050505;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: white;
+            color: #050505;
+            border: 2px solid #050505;
+        }
+
+         /* Dropdown Styles */
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 15vw;
+            z-index: 1;
+            margin-top: 0.5vw;
+            background-color: transparent;
+        }
+
+        .dropdown-content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dropdown-content a:hover {
+            background-color: white;
+            color: #050505;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Heading Styles */
+        .landing-heading {
+            color: #333;
+            text-align: center;
+            font-family: Aboreto, sans-serif;
+            font-size: 6vw;
+            margin-top: 15vw; /* Adjust space for the navbar */
+        }
+
+        /* Section Styles */
+        section {
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            align-items: flex-start; /* Align items to the top */
+            text-align: left; /* Align text to the left */
+            font-size: 1.5rem;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Work Section Styles */
+        #work {
+            background-color: #050505;
+            padding: 50px 20px; /* Adjust padding to prevent content cut-off */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Left align the work section content */
+            margin-top: 20vw;
+        }
+
+        #work h2 {
+            margin-left: 3.7vw;
+            font-size: 3vw;
+            color: #e0e0e0;
+            
+        }
+
+        /* Work Item Styles (Clickable Projects) */
+        .work-item {
+            background-color: #050505;
+            padding: 20px;
+            padding-right: 20vw;
+            padding-left: 2vw;
+            width: auto; /* Use full width */
+            height: 55vw;
+            box-sizing: border-box;
+            margin-bottom: 0; /* Remove spacing between projects */
+            text-align: left; /* Align text inside work item to the left */
+            display: flex;  /* Arrange content side by side */
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer; /* Make the section clickable */
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Keep text color consistent */
+            /* Remove box-shadow */
+            box-shadow: none; /* No shadow */
+        }
+
+        .work-item img {
+            max-width: 15vw; /* Control the image size */
+            height: auto;
+        }
+
+        .work-item h3 {
+            font-size: 5vw;
+            margin-bottom: 10px;
+            font-family: Aboreto, sans-serif;
+            color: #e0e0e0;
+        }
+
+        .work-item p {
+            font-size: 1vw;
+            color: #e0e0e0;
+        }
+        .image-container{ 
+            height: auto;
+            width: auto;
+            margin-top: 5vw;
+        }
+
+        .image-container img{ 
+            display: block;
+            margin: 2vw;
+        }
+        
+
+        /* Contact Section Styles */
+        #contact {
+            background-color: #050505;
+            height: 100vh;
+        }
+
+        .contact-elements{
+            text-align: left;
+            display: flex;
+            margin-left: 4vw;
+        }
+
+        .contact-elements h2 {
+            margin-top: 7vw;
+            font-size: 2.5vw;
+            color: #e0e0e0;
+            font-family: Zen Old Mincho;
+            width: 30vw;
+        }
+
+        .contact-elements p {
+            font-size: 1.4vw;
+            color: #e0e0e0;
+        }
+
+        .contact-elements a{
+            color: #e0e0e0;
+            font-size: 1.4vw;
+            
+        }
+
+        .contact-image1 img{
+            margin-left: 4vw;
+            margin-top: 5vw;
+            filter: saturate(7);
+            width: 25vw;
+            height: auto;
+        }
+
+        .contact-image2 img{
+            width: 6vw;
+            height: auto;
+            margin-top: 21vw;
+            margin-left: 23vw;
+            padding: 2vw;
+        }
+
+    </style>
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+   <nav class="navbar">
+    <a href="#home">Home</a>
+    <div class="dropdown">
+        <a href="#work">Projects</a>
+        <div class="dropdown-content">
+            <a href="#project1">Passion Project</a>
+            <a href="#project2">Go-IT</a>
+            <a href="#project3">Ynot?</a>
+            <a href="#project4">Portfolio</a>
+            <a href="#project5">Steel Pulse Poster</a>
+            <a href="#project6">Fast Forward</a>
+        </div>
+    </div>
+    <a href="#contact">Contact</a>
+</nav>
+
+    <!-- Main Heading -->
+    <main id="home">
+        <h1 class="landing-heading">
+            Coralie Erasmus<br>
+            Portfolio - S3
+        </h1>
+    </main>
+
+    <!-- Work Section with 3 Projects -->
+    <section id="work">
+        <h2>Recent Projects</h2>
+        
+        <!-- Project 1 (Clickable) -->
+            <a href="https://www.project1.com" class="work-item">
+                <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                    <img src="https://via.placeholder.com/200" alt="Project 1">
+                    <img src="https://via.placeholder.com/200" alt="Project 1">
+                    <img src="https://via.placeholder.com/200" alt="Project 1">
+                </div>
+                <div>
+                    <h3>Passion Project</h3>
+                    <p>graphic design - branding - UI design - research</p>
+                </div>
+            </a>
+        
+        <!-- Project 2 (Clickable) -->
+        <a href="https://www.project2.com" class="work-item">
+            <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                <img src="https://via.placeholder.com/200" alt="Project 2">
+                <img src="https://via.placeholder.com/200" alt="Project 2">
+                <img src="https://via.placeholder.com/200" alt="Project 2">
+            </div>
+            <div>
+                <h3>Go-it</h3>
+                <p>A brief description of the second project<br> emphasizing innovation and creativity.</p>
+            </div>
+        </a>
+        
+        <!-- Project 3 (Clickable) -->
+        <a href="https://www.project3.com" class="work-item">
+            <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                <img src="https://via.placeholder.com/200" alt="Project 3">
+                <img src="https://via.placeholder.com/200" alt="Project 3">
+                <img src="https://via.placeholder.com/200" alt="Project 3">
+            </div>
+            <div>
+                <h3>YNOT?</h3>
+                <p>A brief description of the third project<br> highlighting the impact it had on users.</p>
+            </div>
+        </a>
+
+         <!-- Project 4 (Clickable) -->
+         <a href="https://www.project3.com" class="work-item">
+            <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                <img src="https://via.placeholder.com/200" alt="Project 4">
+                <img src="https://via.placeholder.com/200" alt="Project 4">
+                <img src="https://via.placeholder.com/200" alt="Project 4">
+            </div>
+            <div>
+                <h3>Portfolio</h3>
+                <p>A brief description of the third project<br> highlighting the impact it had on users.</p>
+            </div>
+        </a>
+
+         <!-- Project 5 (Clickable) -->
+         <a href="https://www.project3.com" class="work-item">
+            <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                <img src="https://via.placeholder.com/200" alt="Project 5">
+                <img src="https://via.placeholder.com/200" alt="Project 5">
+                <img src="https://via.placeholder.com/200" alt="Project 5">
+            </div>
+            <div>
+                <h3>Steel pulse poster</h3>
+                <p>A brief description of the third project<br> highlighting the impact it had on users.</p>
+            </div>
+        </a>
+
+         <!-- Project 6 (Clickable) -->
+         <a href="https://www.project3.com" class="work-item">
+            <div class="image-container"> <!--move images under eachother instead of next to eachother-->
+                <img src="https://via.placeholder.com/200" alt="Project 6">
+                <img src="https://via.placeholder.com/200" alt="Project 6">
+                <img src="https://via.placeholder.com/200" alt="Project 6">
+            </div>
+            <div>
+                <h3>Fast forward</h3>
+                <p>A brief description of the third project<br> highlighting the impact it had on users.</p>
+            </div>
+        </a>
+
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-elements">
+            <div>
+                <h2>Need to get a hold of me?</h2>
+                <p>Let's collaborate or simply have a chat.</p>
+                <a href= "mailto:coralierasmus@gmail.com"> coralierasmus@gmail.com</a>
+            </div>
+            <div class="contact-image1">
+                <img src="images/home/contact-face-img.png" alt="sideprofile image">
+            </div>
+            <a href=#home class="contact-image2">
+                <img src="images/home/back-to-top.png" alt="buttom to go back to the top of the page">
+            </a>
+        </div>
+    </section>
+
+
+    <script>
+       
+    </script>
+
+</body>
+</html>
