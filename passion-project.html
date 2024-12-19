@@ -40,10 +40,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
-            height: 100vh; /* Ensure full height */
+            justify-content: flex-start; /* Centering along the vertical axis */
             overflow-x: hidden; /* Prevent horizontal scroll */
             box-sizing: border-box;
+            width: 100vw; /* Ensure the body spans the entire viewport width */
         }
 
         /* Navigation Bar Styles */
@@ -105,99 +105,12 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        /* Main Heading Styles */
-        .landing-heading {
-            color: #333;
-            text-align: center;
-            font-family: Aboreto, sans-serif;
-            font-size: 6vw;
-            margin-top: 15vw; /* Adjust space for the navbar */
-        }
-
-        /* Section Styles */
-        section {
-            display: flex;
-            justify-content: flex-start; /* Align items to the left */
-            align-items: flex-start; /* Align items to the top */
-            text-align: left; /* Align text to the left */
-            font-size: 1.5rem;
-            padding: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Work Section Styles */
-        #work {
-            background-color: #050505;
-            padding: 50px 20px; /* Adjust padding to prevent content cut-off */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Left align the work section content */
-            margin-top: 20vw;
-        }
-
-        #work h2 {
-            margin-left: 3.7vw;
-            font-size: 3vw;
-            color: #e0e0e0;
-            
-        }
-
-        /* Work Item Styles (Clickable Projects) */
-        .work-item {
-            background-color: #050505;
-            padding: 20px;
-            padding-right: 20vw;
-            padding-left: 2vw;
-            width: auto; /* Use full width */
-            height: 55vw;
-            box-sizing: border-box;
-            margin-bottom: 0; /* Remove spacing between projects */
-            text-align: left; /* Align text inside work item to the left */
-            display: flex;  /* Arrange content side by side */
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer; /* Make the section clickable */
-            text-decoration: none; /* Remove underline from links */
-            color: inherit; /* Keep text color consistent */
-            /* Remove box-shadow */
-            box-shadow: none; /* No shadow */
-        }
-
-        .work-item img {
-            max-width: 15vw; /* Control the image size */
-            height: auto;
-        }
-
-        .work-item h3 {
-            font-size: 5vw;
-            margin-bottom: 10px;
-            font-family: Aboreto, sans-serif;
-            color: #e0e0e0;
-        }
-
-        .work-item p {
-            font-size: 1vw;
-            color: #e0e0e0;
-        }
-        .image-container{ 
-            height: auto;
-            width: auto;
-            margin-top: 5vw;
-        }
-
-        .image-container img{ 
-            display: block;
-            margin: 2vw;
-        }
         
 
         /* Contact Section Styles */
         #contact {
             background-color: #050505;
-            height: 100vh;
+            width: 100%;
         }
 
         .contact-elements{
@@ -240,15 +153,21 @@
             margin-left: 23vw;
             padding: 2vw;
         }
-        #top-of-page{
+
+        #top-of-page {
             display: flex;
-            justify-content: space-between;
-            margin-top: 10vw;
-            margin-right: 30vw;
-            margin-left: 5vw;
+            flex-wrap: wrap; /* Ensure responsiveness */
+            justify-content: left;
+            align-items: flex-start;
+            width: 100%; /* Stretch across the viewport */
+            padding: 10px 5vw; /* Adjust padding for centering */
+            box-sizing: border-box;
+            margin-top: 5vw;
         }
+
         .title{
-           padding-left: 20vw;
+           padding-left: 7vw;
+           padding-top: 5vw;
         }
         
         .title p{
@@ -259,6 +178,10 @@
         .title h1{
             font-family: ZenOldMicho;
             font-size: 2vw;
+        }
+
+        .lo{
+            margin-top: 2vw;
         }
         
         .lo p{
@@ -288,9 +211,53 @@
             color: inherit;
             box-shadow: none;
         }
-        .images{
-            width: 20vw;
-            margin-left: 5vw;
+        .images img{
+            width: 15vw;
+            height: auto;
+            
+        }
+        
+        .information h2{
+            font-family: Mukta-Light;
+            font-size: 2vw;
+        }
+
+        .information p{
+            font-family: Mukta-Light;
+            font-size: 1.2vw;
+        }
+
+        .information{
+            margin-left: 2vw;
+            align-items: start;
+        }
+
+        .section1, .section2{
+            max-width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            padding-left: 5vw;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+        }
+
+        .section2{
+            background-color: #050505;
+        }
+
+        .section2 h2{
+            color: #e0e0e0;
+        }
+        .section2 p{
+            color: #e0e0e0;
+        }
+
+        #main{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
     </style>
@@ -323,7 +290,7 @@
                 <li>LO1</li>
                 <li>LO1</li>
                 <li>LO1</li>
-                <li>(links to GitWiki)</li>
+                <p>(links to GitWiki)</p>
             </ul>
             </p>
         </div>
@@ -332,16 +299,81 @@
             <h1>Bob Marley Website - Passion Project</h1>
        </div>
     </main>
-
-    <section id="briefing">
+    <section id="main">
+    <div class="section1">
         <div class="images">
             <img src="https://via.placeholder.com/200" alt="Give brief description here">
         </div>
         <div class="information">
-            <h2>Briefing</h2>
-            <hr width="100%" size="2">
+            <h2>BRIEFING</h2>
+            <hr max-width="100%" size="2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, 
+                libero nisi venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, 
+                quam ante maximus augue, ut ultricies magna sem in dolor. </p>
         </div>
-    </section>
+    </div>
+    <div class="section2">
+        <div class="images">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+        </div>
+        <div class="information">
+            <h2>ACTIONS</h2>
+            <hr width="100%" size="2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, 
+                eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem 
+                in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi 
+                venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue,
+                 ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque,
+                  elit et mollis tempus, libero nisi venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat,
+                   quam ante maximus augue, ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, 
+                    magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, 
+                    consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, eget lobortis 
+                    augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem in dolor.
+             </p>
+        </div>
+    </div>
+    <div class="section1">
+        <div class="images">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+        </div>
+        <div class="information">
+            <h2>APPROACH</h2>
+            <hr width="100%" size="2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, 
+                eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem 
+                in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi 
+                venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue,
+                 ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque,
+                  elit et mollis tempus, libero nisi venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat,
+                   quam ante maximus augue, ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, 
+                    magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem in dolor. Lorem ipsum dolor sit amet, 
+                    consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, eget lobortis 
+                    augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem in dolor.
+             </p>
+        </div>
+    </div>
+    <div class="section2">
+        <div class="images">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+            <img src="https://via.placeholder.com/200" alt="Give brief description here">
+        </div>
+        <div class="information">
+            <h2>REFLECTION</h2>
+            <hr width="100%" size="2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi venenatis nisl, 
+                eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, ut ultricies magna sem 
+                in dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque, elit et mollis tempus, libero nisi 
+                venenatis nisl, eget lobortis augue nibh et sem. Vivamus molestie, magna nec bibendum feugiat, quam ante maximus augue, 
+                ut ultricies magna sem in dolor. 
+             </p>
+        </div>
+    </div>
+</section>
     
     <!-- Contact Section -->
     <section id="contact">
