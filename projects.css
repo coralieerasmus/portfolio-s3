@@ -1,0 +1,267 @@
+@font-face {
+    font-family: "Aboreto";
+    src: url("/fonts/Aboreto-Regular.ttf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Zen Old Mincho";
+    src: url("/fonts/ZenOldMincho-Regular.ttf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Mukta-Light";
+    src: url("/fonts/Mukta-Light.ttf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* General Body Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Centering along the vertical axis */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    box-sizing: border-box;
+    width: 100vw; /* Ensure the body spans the entire viewport width */
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    gap: 2vw;
+    position: fixed;
+    top: 2vw;
+    right: 2vw;
+    z-index: 10;
+    width: auto;
+    height: auto;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2vw;
+    padding: 0.5vw 2vw;
+    border: 2px solid white;
+    border-radius: 1vw;
+    background-color:#050505;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: white;
+    color: #050505;
+    border: 2px solid #050505;
+}
+
+ /* Dropdown Styles */
+ .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 15vw;
+    z-index: 1;
+    margin-top: 0.5vw;
+    background-color: transparent;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-content a:hover {
+    background-color: white;
+    color: #050505;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Contact Section Styles */
+#contact {
+    background-color: #050505;
+    width: 100%;
+}
+
+.contact-elements{
+    text-align: left;
+    display: flex;
+    margin-left: 4vw;
+}
+
+.contact-elements h2 {
+    margin-top: 7vw;
+    font-size: 2.5vw;
+    color: #e0e0e0;
+    font-family: Zen Old Mincho;
+    width: 30vw;
+}
+
+.contact-elements p {
+    font-size: 1.4vw;
+    color: #e0e0e0;
+}
+
+.contact-elements a{
+    color: #e0e0e0;
+    font-size: 1.4vw;
+    
+}
+
+.contact-image1 img{
+    margin-left: 4vw;
+    margin-top: 5vw;
+    filter: saturate(7);
+    width: 25vw;
+    height: auto;
+}
+
+.contact-image2 img{
+    width: 6vw;
+    height: auto;
+    margin-top: 21vw;
+    margin-left: 23vw;
+    padding: 2vw;
+}
+
+#top-of-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title{
+   padding-left: 7vw;
+   padding-top: 5vw;
+}
+
+.title p{
+    font-family: Mukta-Light;
+    font-size: 1vw;
+}
+
+.title h1{
+    font-family: ZenOldMicho;
+    font-size: 2vw;
+}
+
+.lo{
+    margin-top: 2vw;
+    max-width: 100%;
+}
+
+.lo p{
+    font-family: Mukta-Light;
+    font-size: 1vw;
+}
+
+.lo li{
+    font-family: ZenOldMicho;
+    font-size: 1vw;
+}
+
+.lo li {
+    padding: 5px 10px; /* Add spacing around the text */
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+    text-align: left; /* Ensure text alignment */
+}
+
+
+.content{
+    padding: 20px;
+    padding-right: 20vw;
+    padding-left: 2vw;
+    width: auto;
+    /* height: 55vw; */
+    box-sizing: border-box;
+    margin-bottom: 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: none;
+}
+.images img{
+    width: 15vw;
+    height: auto;
+    
+}
+
+.information h2{
+    font-family: Mukta-Light;
+    font-size: 2vw;
+}
+
+.information p{
+    font-family: Mukta-Light;
+    font-size: 1.2vw;
+}
+
+.information{
+    margin-left: 2vw;
+    align-items: start;
+}
+
+.section1, .section2{
+    max-width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+.section2{
+    background-color: #050505;
+}
+
+.section2 h2{
+    color: #e0e0e0;
+}
+.section2 p{
+    color: #e0e0e0;
+}
+
+#main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.description{
+    max-width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
