@@ -24,7 +24,7 @@ If you want to specifically find information on a project, you can find them thr
 <li>Fast Forward: link</li>
 </ul>
 
-If youd rather find information about each specific learning outcome, you can find them here
+If you'd rather find information about each specific learning outcome, you can find them here:
 <ul>
 <li>LO1: link</li>
 <li>LO2: link</li>
