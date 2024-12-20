@@ -80,7 +80,7 @@ body {
     min-width: 15vw;
     z-index: 1;
     margin-top: 0.5vw;
-    background-color: transparent;
+    
 }
 
 .dropdown-content a {
@@ -190,6 +190,10 @@ body {
     text-align: left; /* Ensure text alignment */
 }
 
+.lo a{
+    color: #050505;
+}
+
 
 .content{
     padding: 20px;
@@ -227,6 +231,8 @@ body {
 .information{
     margin-left: 2vw;
     align-items: start;
+    max-width: 100%;
+    margin-right: 4vw;
 }
 
 .section1, .section2{
