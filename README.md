@@ -10,9 +10,11 @@ This project is still under construction and being actively worked on!
 </ul>
 
 # usage
-- Here is a link you can use to open up the website in a browser, here you can find an overview of projects i've worked on aswell as some information about them: https://coralieerasmus.github.io/portfolio-s3/
-- Here is a link to open the GitWiki, here you can find more in depth information on my different projects and learning outcomes: /link.here
-- If you want to specifically find information on a project, you can find them through the following links:
+-Here is a link you can use to open up the website in a browser, here you can find an overview of projects i've worked on aswell as some information about them: https://coralieerasmus.github.io/portfolio-s3/
+
+-Here is a link to open the GitWiki, here you can find more in depth information on my different projects and learning outcomes: /link.here
+
+-If you want to specifically find information on a project, you can find them through the following links:
 <ul>
 <li>Passion Project: link</li>
 <li>Go-It: link</li>
@@ -22,7 +24,7 @@ This project is still under construction and being actively worked on!
 <li>Fast Forward: link</li>
 </ul>
 
-- If youd rather find information about each specific learning outcome, you can find them here
+-If youd rather find information about each specific learning outcome, you can find them here
 <ul>
 <li>LO1: link</li>
 <li>LO2: link</li>
