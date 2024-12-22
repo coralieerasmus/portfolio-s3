@@ -35,4 +35,5 @@ If you'd rather find information about each specific learning outcomes, you can 
 <a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Professional-Standard"><li>LO4</li></a>
 <a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Personal-Leadership"><li>LO5</li></a>
 </ul>
+or <a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Conceptualize,-Design-and-Develop-Interactive-Media-Products">here</a>, for the homepage
 
