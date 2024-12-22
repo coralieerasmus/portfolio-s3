@@ -13,7 +13,7 @@ This project is still under construction and being actively worked on!
 </ul>
 
 # usage
-Here is a link you can use to open up the website in a browser, here you can find an overview of projects i've worked on aswell as some information about them: https://coralieerasmus.github.io/portfolio-s3/ (keepin mind its a work-in-progress)
+Here is a link you can use to open up the website in a browser, here you can find an overview of projects i've worked on aswell as some information about them: https://coralieerasmus.github.io/portfolio-s3/ (keepin mind its a work-in-progress, also let it load in well sometimes it buggs for a second and the images(placeholders) dont load immediately)
 
 Here is a link to open the GitWiki, here you can find more in depth information on my different projects and learning outcomes: /link.here
 
