@@ -27,7 +27,7 @@ If you want to specifically find information on a project, you can find them thr
 <a href="http://127.0.0.1:5501/fast-forward.html"><li>Fast Forward</li></a>
 </ul>
 
-If you'd rather find information about each specific learning outcome, you can find them here:
+If you'd rather find information about each specific learning outcomes, you can find them here:
 <ul>
 <a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Conceptualize,-Design-and-Develop-Interactive-Media-Products"><li>LO1</li></a>
 <a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Transferable-Production"><li>LO2</li></a>
