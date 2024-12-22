@@ -6,7 +6,10 @@ This project is still under construction and being actively worked on!
  
  # built with
 <ul>
-<li>Gsap</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>JS</li>
+<li>Three.js</li>
 </ul>
 
 # usage
