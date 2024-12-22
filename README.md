@@ -16,12 +16,12 @@ Here is a link to open the GitWiki, here you can find more in depth information 
 
 If you want to specifically find information on a project, you can find them through the following links:
 <ul>
-<li>Passion Project: link</li>
-<li>Go-It: link</li>
-<li>Ynot?: link</li>
-<li>Portfolio: link</li>
-<li>Steel Pulse: link</li>
-<li>Fast Forward: link</li>
+<a href="http://127.0.0.1:5501/passion-project.html"><li>Passion Project</li></a>
+<li>Go-It</li>
+<li>Ynot?</li>
+<li>Portfolio</li>
+<li>Steel Pulse</li>
+<li>Fast Forward</li>
 </ul>
 
 If you'd rather find information about each specific learning outcome, you can find them here:
