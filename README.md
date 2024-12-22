@@ -17,21 +17,19 @@ Here is a link to open the GitWiki, here you can find more in depth information 
 If you want to specifically find information on a project, you can find them through the following links:
 <ul>
 <a href="http://127.0.0.1:5501/passion-project.html"><li>Passion Project</li></a>
-<li>Go-It</li>
-<li>Ynot?</li>
-<li>Portfolio</li>
-<li>Steel Pulse</li>
-<li>Fast Forward</li>
+<a href="http://127.0.0.1:5501/go-it.html"><li>Go-It</li></a>
+<a href="http://127.0.0.1:5501/ynot.html"><li>Ynot?</li></a>
+<a href="http://127.0.0.1:5501/portfolio.html"><li>Portfolio</li></a>
+<a href="http://127.0.0.1:5501/steelpulse.html"><li>Steel Pulse</li></a>
+<a href="http://127.0.0.1:5501/fast-forward.html"><li>Fast Forward</li></a>
 </ul>
 
 If you'd rather find information about each specific learning outcome, you can find them here:
 <ul>
-<li>LO1: link</li>
-<li>LO2: link</li>
-<li>LO3: link</li>
-<li>LO4: link</li>
-<li>LO5: link</li>
-<li>LO6: link</li>
+<a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Conceptualize,-Design-and-Develop-Interactive-Media-Products"><li>LO1</li></a>
+<a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Transferable-Production"><li>LO2</li></a>
+<a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Creative-Iterations"><li>LO3</li></a>
+<a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Professional-Standard"><li>LO4</li></a>
+<a href="https://github.com/coralieerasmus/portfolio-s3/wiki/Personal-Leadership"><li>LO5</li></a>
 </ul>
 
-# acknowledgements
