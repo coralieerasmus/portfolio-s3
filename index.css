@@ -169,7 +169,9 @@ section {
 
 .work-item img {
     max-width: 15vw; /* Control the image size */
-    height: auto;
+    height: 200px;
+    width:200px;
+    object-fit: cover;
 }
 
 .work-item h3 {
