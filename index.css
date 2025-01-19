@@ -169,8 +169,8 @@ section {
 
 .work-item img {
     max-width: 15vw; /* Control the image size */
-    height: 200px;
-    width:200px;
+    height: 10.4vw;
+    width: 10.4vw;
     object-fit: cover;
 }
 
