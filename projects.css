@@ -37,7 +37,9 @@ body {
     overflow-x: hidden; /* Prevent horizontal scroll */
     box-sizing: border-box;
     width: 100vw; /* Ensure the body spans the entire viewport width */
+    background-color: #050505;
 }
+
 
 /* Navigation Bar Styles */
 .navbar {
@@ -103,7 +105,7 @@ body {
 /* Contact Section Styles */
 #contact {
     background-color: #050505;
-    width: 100%;
+    width: 100vw;
 }
 
 .contact-elements{
@@ -152,46 +154,58 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    z-index: 8;
 }
 
 .title{
-   padding-left: 7vw;
    padding-top: 5vw;
 }
 
 .title p{
     font-family: Mukta-Light;
     font-size: 1vw;
+    width: 60vw;
+    color: #e0e0e0;
 }
 
 .title h1{
-    font-family: ZenOldMicho;
+    font-family: Mukta-Light;
     font-size: 2vw;
+    color: #e0e0e0;
 }
 
 .lo{
-    margin-top: 2vw;
+    margin-top: 5vw;
+    margin-left: 14vw;
     max-width: 100%;
+    color: #e0e0e0;
 }
 
 .lo p{
     font-family: Mukta-Light;
     font-size: 1vw;
+    color: #e0e0e0;
 }
 
 .lo li{
     font-family: ZenOldMicho;
     font-size: 1vw;
+    color: #e0e0e0;
 }
 
 .lo li {
     padding: 5px 10px; /* Add spacing around the text */
     box-sizing: border-box; /* Ensure padding doesn’t affect width */
-    text-align: left; /* Ensure text alignment */
+    text-align: right; /* Ensure text alignment */
+}
+
+.lo ul {
+    text-align: right; /* Ensure text alignment */
+    list-style-type: none
 }
 
 .lo a{
-    color: #050505;
+    color: #e0e0e0;
 }
 
 
@@ -213,34 +227,42 @@ body {
     box-shadow: none;
 }
 .images img{
-    width: 15vw;
+    width: 10vw;
     height: auto;
-    
+    padding-bottom: 1vw;
+    padding-right: 5vw;
+}
+.images {
+    width: 10vw;
+    height: auto;
+    display: inline;
+    padding-left: 2vw;
 }
 
 .information h2{
     font-family: Mukta-Light;
     font-size: 2vw;
+    color: #e0e0e0;
 }
 
 .information p{
     font-family: Mukta-Light;
     font-size: 1.2vw;
+    width: 80vw;
+    color: #e0e0e0;
 }
 
 .information{
     margin-left: 2vw;
     align-items: start;
     max-width: 100%;
-    margin-right: 4vw;
+    margin-right: vw;
 }
 
 .section1, .section2{
-    max-width: 100%;
+    width: 100vw;
     text-align: left;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 5vw;
+    padding-left: 3vw;
     padding-top: 2vw;
     padding-bottom: 2vw;
 }
@@ -269,5 +291,29 @@ body {
     justify-content: space-between;
     padding-left: 5vw;
     padding-top: 2vw;
-    padding-bottom: 2vw;
+}
+a{
+    color: purple;
+}
+hr{
+    color: #050505;
+}
+.deliverables-images img{
+    width: 50vw;
+    height: auto;
+    padding-left: 1vw;
+}
+.powerpoint-images img{
+    width: 20vw;
+    height: auto;
+    padding-left: 1vw;
+}
+.school-images img{
+    width: 20vw;
+    height: auto;
+    padding-left: 1vw;
+}
+video{
+    width: 16vw;
+    height: auto;
 }
